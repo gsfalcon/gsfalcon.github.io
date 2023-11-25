@@ -1,0 +1,451 @@
+/* Reset and base styles */
+html, body {
+    font-family: 'Open Sans', sans-serif;
+    height: 100%;
+    margin: 0;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header and Footer Styling */
+header, footer {
+    background-color: #333333;
+    color: #ffffff;
+    text-align: center;
+    padding: 1em 0;
+    position: relative;
+    z-index: 2;
+}
+
+/* Header Styles */
+header {
+    font-size: 30px;
+    cursor: pointer;
+    transition: color 0.3s;
+    z-index: 999;
+}
+
+header a {
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+}
+
+header:hover {
+    color: #00cc44;
+}
+
+header::before {
+    /* Background effect */
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #333333, #444444);
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
+header:hover::before {
+    opacity: 1;
+}
+
+/* Container and Sidebar Styling */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    z-index: 1;
+}
+
+.sidebar {
+    /* Sidebar Styles */
+    flex: 1;
+    background-color: #555555;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 17px;
+    line-height: 1.6;
+    max-width: 25%;
+    width: 100%;
+    margin-bottom: 0px;
+}
+
+/* Navigation Menu Styles */
+nav {
+    width: 100%;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    margin-bottom: 15px;
+}
+
+nav a {
+    display: flex;
+    align-items: center;
+    background-color: #333333;
+    color: #fff9f9;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 5px;
+    text-align: left;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: #444444;
+}
+
+/* Main Content Styling */
+.content {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    line-height: 1.6;
+    font-size: 18px;
+    background-color: #bbbbbb;
+    border-radius: 0px;
+    margin-bottom: 0px;
+}
+
+.content a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    transition: text-decoration 0.3s;
+}
+
+.content a:hover {
+    text-decoration: underline;
+}
+
+/* Tags Section Styling */
+.tags {
+    background-color: #e0e0e0;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Footer Styles */
+footer {
+    margin-top: 0px;
+    margin-bottom: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+footer a {
+    color: #fff9f9;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #00cc44;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        max-width: 100%;
+    }
+}
+
+/* Text Selection Styling */
+::selection {
+    background-color: #555555;
+    color: #fff9f9;
+}
+
+::-moz-selection {
+    background-color: #555555;
+    color: #fff9f9;
+}
+
+/* Font Awesome Icon Styles */
+.fa-brands, .fa-solid, .fa-regular {
+    color: #d2d2d2;
+    padding-right: 8px;
+}
+
+.fa-mug-hot {
+    color: #d2d2d2;
+    padding-right: 2px;
+    padding-left: 2px;
+}
+
+.fa-terminal {
+    color: #00cc44;
+}
+
+/* Blinking Animation */
+.blink {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    animation: blinker 0.6s linear infinite;
+    color: #00cc44;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Additional Styling */
+.index-header {
+    background-color: #555555;
+    color: #e6e6e6;
+    font-weight: bold;
+    line-height: 0.1;
+    font-size: 20px;
+    text-align: center;
+}
+
+.hide {
+    display: none;
+}
+
+/* Universal Box Sizing */
+* {
+    box-sizing: border-box;
+}
+
+/* Responsive Grid Container */
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Individual Box Styling in Grid */
+.box {
+    position: relative;
+    flex: 1 0 calc(25% - 20px);
+    max-width: calc(25% - 20px);
+    border: 2px solid #808080;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: #c0c0c0;
+}
+
+/* Image Styling in Box */
+img {
+    width: 100%;
+    height: auto;
+    border-bottom: 2px solid #808080;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Paragraph Styling in Box */
+p {
+    padding: 10px;
+    margin: 0;
+}
+
+/* Tag Section Styling in Box */
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 5px;
+    margin-bottom: 0;
+    background-color: rgb(168, 168, 168);
+}
+
+/* Button Styling */
+button {
+    background-color: #c0c0c0;
+    color: #000000;
+    padding: 5px 10px;
+    border: 2px solid #808080;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Hover Effect on Image in Box */
+.box:hover img {
+    opacity: 0.8;
+}
+
+/* Hover Effect on Button */
+button:hover {
+    background-color: #808080;
+}
+
+/* Responsive Grid for Small Screens */
+@media screen and (max-width: 768px) {
+    .box {
+        flex: 1 0 calc(50% - 20px);
+        max-width: calc(50% - 20px);
+    }
+}
+
+/* Profile Section Styling */
+.profile-container {
+    margin-top: -60px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.avatar-container {
+    flex: 0 0 20%;
+    margin-top: 50px;
+    margin-bottom: -50px;
+}
+
+.avatar {
+    width: 100%;
+    shape-outside: border-box;
+}
+
+.profile-info {
+    flex: 1 1 calc(80% - 20px);
+    margin-top: 20px;
+}
+
+/* Tags Section Styling in Profile */
+.tags-top,
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+/* Hover Effect on Tags in Profile */
+.tags a:hover,
+.tags-top a:hover {
+    text-decoration: none;
+}
+
+/* Header Styles in Profile */
+.indexh1 {
+    margin-left: 4px;
+    font-size: 180%;
+}
+
+/* Subheader Styles in Profile */
+.indexh2 {
+    font-size: 18px;
+    margin-top: -35px;
+    margin-bottom: 25px;
+    margin-left: 6px;
+    font-weight: 400;
+}
+
+/* Blockquote Styling */
+blockquote {
+    background-color: transparent;
+    border-left: 10px solid #444444;
+    padding: 0.5em 10px;
+}
+
+/* GitHub Card Styling */
+.github-card {
+    background-color: #b4b4b4;
+    border: none;
+    max-width: 100%;
+    width: auto;
+    padding-left: 0px;
+}
+
+/* Index Page Styling */
+.indexPage {
+    display: inline-block;
+    background-color: transparent;
+    margin-top: 0px;
+    padding-left: 0px;
+    padding-right: 15px;
+    padding-top: 1px;
+    padding-bottom: 10px;
+}
+
+/* Projects Page Styling */
+.projectsPage {}
+
+/* Avatar Styling in Index Page */
+.indexAvatar img {
+    max-width: 150px;
+    float: inline-start;
+    border: none;
+    background-color: transparent;
+    margin: 20px 10px 0px 10px;
+}
+
+/* Horizontal Rule Styling */
+.hr-class {
+    margin-top: -20px;
+}
+
+/* GitHub Repository Card Styling */
+.github-repo {
+    vertical-align: text-top;
+    display: inline-block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #707070;
+    margin: 3px;
+    border-radius: 5px;
+}
+
+/* Horizontal Rule Styling for Projects Section */
+.hr-class-projects {
+    margin-bottom: 20px;
+}
+
+/* Project Section Heading Styles */
+.projecth2-top {
+    font-size: 120%;
+    display: inline-block;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    margin-left: 6px;
+}
+
+.projecth2 {
+    font-size: 120%;
+    display: inline-block;
+    margin-top: 30px;
+    margin-bottom: 5px;
+    margin-left: 6px;
+}
+
+/* Project Section Paragraph Styles */
+.projectp {
+    font-size: 100%;
+}

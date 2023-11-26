@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /*.jpg$
+Disallow: /*.png$
+Disallow: /*.jpeg$
+Disallow: /img
+Disallow: /404.html
+Sitemap: https://gsfalcon.dev/sitemap.txt

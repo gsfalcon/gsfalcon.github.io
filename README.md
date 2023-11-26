@@ -1,4 +1,4 @@
-# ✨ A Developer's Portfolio with a Shine ✨
+# ✨ gsFALCON.dev ✨
 
 This repository is home to a budding developer's portfolio, showcasing their skills and projects. Built with the simplicity of HTML and CSS, this portfolio stands as a testament to the developer's dedication and passion for coding. 🚀
 

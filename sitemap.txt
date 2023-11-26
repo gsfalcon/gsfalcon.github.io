@@ -8,4 +8,4 @@ https://gsfalcon.dev/personal.html
 https://gsfalcon.dev/projects.html
 https://gsfalcon.dev/resume.html
 https://gsfalcon.dev/blog/
-https://gsfalcon.dev/projects/ 
+https://gsfalcon.dev/projects/

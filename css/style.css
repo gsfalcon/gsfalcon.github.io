@@ -449,3 +449,30 @@ blockquote {
 .projectp {
     font-size: 100%;
 }
+
+/* Error 404 Style */
+.error404 {
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: 100%;
+}
+
+.error404 h1 {
+    font-size: 50px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: -3px;
+    margin: 0px;
+}
+
+.error404 p {
+    margin: 0;
+    line-break:normal;
+    font-size: 20px;
+}
+
+.error404 img {
+    max-width:fit-content;
+    border: none;
+}

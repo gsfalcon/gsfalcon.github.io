@@ -1,6 +1,6 @@
-/* Reset and base styles */
 html, body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: monospace;
+    font-size: 100%;
     height: 100%;
     margin: 0;
     background-color: #f0f0f0;
@@ -8,7 +8,6 @@ html, body {
     flex-direction: column;
 }
 
-/* Header and Footer Styling */
 header, footer {
     background-color: #333333;
     color: #ffffff;
@@ -18,7 +17,6 @@ header, footer {
     z-index: 2;
 }
 
-/* Header Styles */
 header {
     font-size: 30px;
     cursor: pointer;
@@ -37,7 +35,6 @@ header:hover {
 }
 
 header::before {
-    /* Background effect */
     content: "";
     position: absolute;
     width: 100%;
@@ -54,7 +51,6 @@ header:hover::before {
     opacity: 1;
 }
 
-/* Container and Sidebar Styling */
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -63,7 +59,6 @@ header:hover::before {
 }
 
 .sidebar {
-    /* Sidebar Styles */
     flex: 1;
     background-color: #555555;
     padding: 20px;
@@ -78,7 +73,6 @@ header:hover::before {
     margin-bottom: 0px;
 }
 
-/* Navigation Menu Styles */
 nav {
     width: 100%;
 }
@@ -109,7 +103,6 @@ nav a:hover {
     background-color: #444444;
 }
 
-/* Main Content Styling */
 .content {
     flex: 1;
     padding: 20px;
@@ -132,7 +125,6 @@ nav a:hover {
     text-decoration: underline;
 }
 
-/* Tags Section Styling */
 .tags {
     background-color: #e0e0e0;
     padding: 10px;
@@ -140,7 +132,6 @@ nav a:hover {
     font-weight: bold;
 }
 
-/* Footer Styles */
 footer {
     margin-top: 0px;
     margin-bottom: auto;
@@ -160,7 +151,6 @@ footer a:hover {
     color: #00cc44;
 }
 
-/* Media Queries for Responsive Design */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
@@ -171,7 +161,6 @@ footer a:hover {
     }
 }
 
-/* Text Selection Styling */
 ::selection {
     background-color: #555555;
     color: #fff9f9;
@@ -182,16 +171,15 @@ footer a:hover {
     color: #fff9f9;
 }
 
-/* Font Awesome Icon Styles */
 .fa-brands, .fa-solid, .fa-regular {
+    vertical-align:middle;
     color: #d2d2d2;
     padding-right: 8px;
 }
 
-.fa-github-dark {
-   
+.fa-github-dark, .fa-python-dark, .fa-scroll-dark {
+    vertical-align:middle;
     color: #111;
-    
 }
 
 .fa-mug-hot {
@@ -204,7 +192,6 @@ footer a:hover {
     color: #00cc44;
 }
 
-/* Blinking Animation */
 .blink {
     display: inline-block;
     margin: 0;
@@ -219,7 +206,6 @@ footer a:hover {
     }
 }
 
-/* Additional Styling */
 .index-header {
     background-color: #555555;
     color: #e6e6e6;
@@ -233,12 +219,10 @@ footer a:hover {
     display: none;
 }
 
-/* Universal Box Sizing */
 * {
     box-sizing: border-box;
 }
 
-/* Responsive Grid Container */
 .grid-container {
     display: flex;
     flex-wrap: wrap;
@@ -250,7 +234,6 @@ footer a:hover {
     box-sizing: border-box;
 }
 
-/* Individual Box Styling in Grid */
 .box {
     position: relative;
     flex: 1 0 calc(25% - 20px);
@@ -263,7 +246,6 @@ footer a:hover {
     background-color: #c0c0c0;
 }
 
-/* Image Styling in Box */
 img {
     width: 100%;
     height: auto;
@@ -271,13 +253,11 @@ img {
     transition: opacity 0.3s ease-in-out;
 }
 
-/* Paragraph Styling in Box */
 p {
     padding: 10px;
     margin: 0;
 }
 
-/* Tag Section Styling in Box */
 .tags {
     display: flex;
     flex-wrap: wrap;
@@ -287,8 +267,9 @@ p {
     background-color: rgb(168, 168, 168);
 }
 
-/* Button Styling */
 button {
+    font-family: monospace;
+    font-size: 100%;
     background-color: #c0c0c0;
     color: #000000;
     padding: 5px 10px;
@@ -299,17 +280,14 @@ button {
     transition: background-color 0.3s ease-in-out;
 }
 
-/* Hover Effect on Image in Box */
 .box:hover img {
     opacity: 0.8;
 }
 
-/* Hover Effect on Button */
 button:hover {
     background-color: #808080;
 }
 
-/* Responsive Grid for Small Screens */
 @media screen and (max-width: 768px) {
     .box {
         flex: 1 0 calc(50% - 20px);
@@ -317,7 +295,6 @@ button:hover {
     }
 }
 
-/* Profile Section Styling */
 .profile-container {
     margin-top: -60px;
     display: flex;
@@ -343,28 +320,22 @@ button:hover {
     margin-top: 20px;
 }
 
-/* Tags Section Styling in Profile */
-.tags-top,
-.tags {
+.tags-top, .tags {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     width: 100%;
 }
 
-/* Hover Effect on Tags in Profile */
-.tags a:hover,
-.tags-top a:hover {
+.tags a:hover, .tags-top a:hover {
     text-decoration: none;
 }
 
-/* Header Styles in Profile */
 .indexh1 {
     margin-left: 4px;
     font-size: 180%;
 }
 
-/* Subheader Styles in Profile */
 .indexh2 {
     font-size: 18px;
     margin-top: -35px;
@@ -373,14 +344,12 @@ button:hover {
     font-weight: 400;
 }
 
-/* Blockquote Styling */
 blockquote {
     background-color: transparent;
     border-left: 10px solid #444444;
     padding: 0.5em 10px;
 }
 
-/* GitHub Card Styling */
 .github-card {
     background-color: #b4b4b4;
     border: none;
@@ -389,7 +358,6 @@ blockquote {
     padding-left: 0px;
 }
 
-/* Index Page Styling */
 .indexPage {
     display: inline-block;
     background-color: transparent;
@@ -400,10 +368,8 @@ blockquote {
     padding-bottom: 10px;
 }
 
-/* Projects Page Styling */
 .projectsPage {}
 
-/* Avatar Styling in Index Page */
 .indexAvatar img {
     max-width: 150px;
     float: inline-start;
@@ -412,12 +378,10 @@ blockquote {
     margin: 20px 10px 0px 10px;
 }
 
-/* Horizontal Rule Styling */
 .hr-class {
     margin-top: -20px;
 }
 
-/* GitHub Repository Card Styling */
 .github-repo {
     vertical-align: text-top;
     display: inline-block;
@@ -429,12 +393,10 @@ blockquote {
     border-radius: 5px;
 }
 
-/* Horizontal Rule Styling for Projects Section */
 .hr-class-projects {
     margin-bottom: 20px;
 }
 
-/* Project Section Heading Styles */
 .projecth2-top {
     font-size: 120%;
     display: inline-block;
@@ -451,12 +413,10 @@ blockquote {
     margin-left: 6px;
 }
 
-/* Project Section Paragraph Styles */
 .projectp {
     font-size: 100%;
 }
 
-/* Error 404 Style */
 .error404 {
     margin: 0;
     padding: 0;
@@ -492,46 +452,49 @@ blockquote {
     height: auto;
     border: 1.5pt solid #707070;
     margin: 3px;
-    border-radius: 6px;
+    border-radius: 5px;
+}
+
+.projectBox:hover {
+    background-color: #a5a5a5;
+    border-color: #444;
 }
 
 .projectBox a {
     font-weight: bold;
 }
+
 .projectBox a:hover {
     text-decoration: none;
 }
+
 .projectBox h3 {
     vertical-align:top;
-    display: inline-block;
-    border-radius: 0px 0px 5px 0px;
+    display:block;
+    border-radius: 3px 3px 0px 0px;
     background-color: #999;
     text-align: left;
     margin: 0;
     padding: 0;
     font-size: 100%;
     transition: background-color 0.3s ease-in-out;
-    
-   
 }
+
 .projectBox h3 a {
     padding: 5px 5px 5px 5px;
 }
+
 .projectBox h3 a:hover {
     text-decoration: none;
-    
-}
-.projectBox h3:hover {
-    background-color: #888;
-    text-decoration: none;
-    
-    
 }
 
-  
+.projectBox h3:hover {
+    background-color: #777777;
+    text-decoration: none;
+}
+
 .projectBox p {
     text-align:left;
     line-height: 130%;
     padding: 10px;
 }
-  

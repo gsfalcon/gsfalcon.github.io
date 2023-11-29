@@ -188,6 +188,12 @@ footer a:hover {
     padding-right: 8px;
 }
 
+.fa-github-dark {
+   
+    color: #111;
+    
+}
+
 .fa-mug-hot {
     color: #d2d2d2;
     padding-right: 2px;
@@ -476,3 +482,56 @@ blockquote {
     max-width:fit-content;
     border: none;
 }
+
+.projectBox {
+    background-color: #b4b4b4;
+    display: flex;
+    vertical-align: text-top;
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    border: 1.5pt solid #707070;
+    margin: 3px;
+    border-radius: 6px;
+}
+
+.projectBox a {
+    font-weight: bold;
+}
+.projectBox a:hover {
+    text-decoration: none;
+}
+.projectBox h3 {
+    vertical-align:top;
+    display: inline-block;
+    border-radius: 0px 0px 5px 0px;
+    background-color: #999;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    transition: background-color 0.3s ease-in-out;
+    
+   
+}
+.projectBox h3 a {
+    padding: 5px 5px 5px 5px;
+}
+.projectBox h3 a:hover {
+    text-decoration: none;
+    
+}
+.projectBox h3:hover {
+    background-color: #888;
+    text-decoration: none;
+    
+    
+}
+
+  
+.projectBox p {
+    text-align:left;
+    line-height: 130%;
+    padding: 10px;
+}
+  

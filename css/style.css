@@ -43,7 +43,8 @@ body {
 
 .fa-github-dark,
 .fa-python-dark,
-.fa-scroll-dark {
+.fa-scroll-dark,
+.fa-spotify-dark {
     vertical-align: middle;
     color: #111;
 }

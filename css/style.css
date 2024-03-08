@@ -514,13 +514,3 @@ blockquote {
     }
 }
 
-.underConstruction {
-    background-color: transparent;
-    color: black;
-    padding: 20px;
-    text-align: center;
-    vertical-align: middle;
-    font-size: 30px;
-    width: auto;
-    border: none;
-}

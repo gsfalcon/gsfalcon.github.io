@@ -1,4 +1,6 @@
 * {
+    filter:grayscale(7%);
+    filter: contrast(102%);
     box-sizing: border-box;
 }
 

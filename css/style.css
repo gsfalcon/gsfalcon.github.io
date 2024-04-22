@@ -25,32 +25,6 @@ body {
     color: #fff9f9;
 }
 
-.fa-brands,
-.fa-solid,
-.fa-regular {
-    vertical-align: middle;
-    color: #d2d2d2;
-    padding-right: 8px;
-}
-
-.fa-mug-hot {
-    color: #d2d2d2;
-    padding-right: 2px;
-    padding-left: 2px;
-}
-
-.fa-terminal {
-    color: #00cc44;
-}
-
-.fa-github-dark,
-.fa-python-dark,
-.fa-scroll-dark,
-.fa-spotify-dark {
-    vertical-align: middle;
-    color: #111;
-}
-
 header,
 footer {
     background-color: #333333;

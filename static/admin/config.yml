@@ -1,9 +1,8 @@
-backend:
+﻿backend:
   name: github
-  repo: gsfalcon/gsfalcon.github.io   # seu repositório
+  repo: gsfalcon/gsfalcon.github.io
   branch: main
-  # base_url e auth_endpoint só são necessários se você usar um proxy OAuth
-  # (veja a seção de autenticação abaixo)
+  base_url: https://sveltia-cms-auth.gsfalcon.workers.dev
 
 media_folder: "static/images/uploads"
 public_folder: "/images/uploads"

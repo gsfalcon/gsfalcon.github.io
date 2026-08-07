@@ -2,14 +2,18 @@
 title: Hello World
 date: 2026-08-07T01:38:00.000-03:00
 draft: false
+description: Description de Testes Temporária Tático Operacional
 tags:
   - markdown
   - tutorial
   - exemplo
+categories:
+  - Windows
 cover:
-  image: https://picsum.photos/1200/600
-  alt: Imagem de capa de exemplo
-  caption: Legenda opcional da imagem de capa
+  image: /images/uploads/alone5.png
+  alt: Imagem de capa de exemplo - TESTE 1
+  caption: Legenda opcional da imagem de capa - TESTE 2
+ShowToc: true
 ---
 
 Este é um post de exemplo pra você ver como cada elemento do Markdown fica renderizado no tema **PaperMod**. Pode apagar ou editar à vontade depois de conferir.

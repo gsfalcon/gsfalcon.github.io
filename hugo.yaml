@@ -1,11 +1,19 @@
 ﻿baseURL: "https://gsfalcon.github.io/"
-title: "gsFalcon"
+title: "gsFALCON"
 theme: PaperMod
+languageCode: "pt-BR"
+defaultContentLanguage: "pt"
 
 enableRobotsTXT: true
 buildDrafts: false
 buildFuture: false
 buildExpired: false
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
 
 params:
   env: production
@@ -17,8 +25,11 @@ params:
   ShowCodeCopyButtons: true
   ShowToc: true
   homeInfoParams:
-    Title: "gsFalcon"
-    Content: "Blog pessoal sobre tecnologia"
+    Title: "gsFALCON 🦅"
+    Content: "Another Random Tech Blog"
+  socialIcons:
+    - name: github
+      url: "https://github.com/gsfalcon"
 
 menu:
   main:
@@ -28,3 +39,12 @@ menu:
     - name: Tags
       url: /tags/
       weight: 2
+    - name: Arquivo
+      url: /archive/
+      weight: 3
+    - name: Busca
+      url: /search/
+      weight: 4
+    - name: Sobre
+      url: /sobre/
+      weight: 5

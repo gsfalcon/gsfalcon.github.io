@@ -24,6 +24,7 @@ params:
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
   ShowToc: true
+  comments: true
   assets:
     favicon: "/favicon.ico"
     favicon16x16: "/favicon-16x16.png"

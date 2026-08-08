@@ -1,7 +1,7 @@
 ﻿baseURL: "https://gsfalcon.github.io/"
 title: "gsFALCON"
 theme: PaperMod
-languageCode: "pt-BR"
+locale: "pt-BR"
 defaultContentLanguage: "pt"
 
 enableRobotsTXT: true
@@ -24,6 +24,11 @@ params:
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
   ShowToc: true
+  assets:
+    favicon: "/favicon.ico"
+    favicon16x16: "/favicon-16x16.png"
+    favicon32x32: "/favicon-32x32.png"
+    apple_touch_icon: "/apple-touch-icon.png"
   homeInfoParams:
     Title: "gsFALCON 🦅"
     Content: "Another Random Tech Blog"

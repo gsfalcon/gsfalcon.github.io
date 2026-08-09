@@ -24,6 +24,7 @@ params:
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
   ShowToc: true
+  dateFormat: "02 January 2006"
   assets:
     favicon: "/favicon.ico"
     favicon16x16: "/favicon-16x16.png"

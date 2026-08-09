@@ -13,7 +13,7 @@ categories: []
 cover:
   image: /images/uploads/youtube-to-post.png
   alt: Transformando vídeos do YouTube em posts de blog com Python
-  caption: Transformando vídeos do YouTube em posts de blog com Python
+  caption: ""
 ShowToc: true
 comments: true
 ---

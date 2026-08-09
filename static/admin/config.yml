@@ -23,4 +23,5 @@ collections:
       - { label: "Cover", name: "cover", widget: "object", required: false, fields: [ { label: "Image", name: "image", widget: "image", required: false }, { label: "Alt Text", name: "alt", widget: "string", required: false }, { label: "Caption", name: "caption", widget: "string", required: false } ] }
       - { label: "Show Table of Contents", name: "ShowToc", widget: "boolean", default: false, required: false }
       - { label: "Canonical URL", name: "canonicalURL", widget: "string", required: false, hint: "Preencha só se o post for republicado de outro lugar" }
+      - { label: "Comments", name: "comments", widget: "boolean", default: true }
       - { label: "Body", name: "body", widget: "markdown" }

@@ -1,6 +1,6 @@
 ﻿---
 title: "Sobre"
-url: "/sobre/"
+url: "/about/"
 ShowReadingTime: false
 ShowWordCount: false
 ---

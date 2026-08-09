@@ -1,0 +1,13 @@
+{{- define "main" }}
+{{- if site.Params.profileMode.enabled }}
+{{- partial "index_profile.html" . }}
+{{- else }}
+{{- if .Content }}
+<div class="post-content md-content">
+  {{- if not (.Param "disableAnchoredHeadings") }}
+  {{- partial "anchored_headings.html" .Content -}}
+  {{- else }}{{ .Content }}{{ end }}
+</div>
+{{- end }}
+{{- end }}
+{{- end }}

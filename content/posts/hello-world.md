@@ -2,6 +2,7 @@
 title: Hello World
 date: 2026-08-07T01:38:00.000-03:00
 draft: false
+comments: true
 description: Description de Testes Temporária Tático Operacional
 tags:
   - markdown

@@ -23,12 +23,12 @@ Neste tutorial eu mostro o script Python que uso pra isso, o passo a passo de in
 
 ## O que o script faz
 
-- Recebe a URL da página de vídeos de um canal público do YouTube.
-- Descobre todos os vídeos daquele canal.
-- Para cada vídeo, tenta baixar a legenda pública (manual ou automática), com preferência por português.
-- Preserva a descrição completa do vídeo (que geralmente contém links e fontes citadas).
-- Gera um arquivo `.md` por vídeo, com metadados no cabeçalho (front matter) e o embed do player do YouTube no final.
-- Pula vídeos que já foram processados antes, então dá pra rodar de novo sem duplicar trabalho.
+* Recebe a URL da página de vídeos de um canal público do YouTube.
+* Descobre todos os vídeos daquele canal.
+* Para cada vídeo, tenta baixar a legenda pública (manual ou automática), com preferência por português.
+* Preserva a descrição completa do vídeo (que geralmente contém links e fontes citadas).
+* Gera um arquivo `.md` por vídeo, com metadados no cabeçalho (front matter) e o embed do player do YouTube no final.
+* Pula vídeos que já foram processados antes, então dá pra rodar de novo sem duplicar trabalho.
 
 Importante: o script **não baixa vídeo nenhum**. Ele só lê metadados e legendas, que são informações públicas expostas pela própria página do YouTube.
 
@@ -42,26 +42,26 @@ pip install yt-dlp
 
 Não precisa de `ffmpeg` nem de nada relacionado a vídeo/áudio, já que não há download de mídia.
 
-## Passo 1: autenticação (cookies)
+## Autenticação (cookies)
 
 O YouTube passou a exigir autenticação para várias operações em lote, mesmo em conteúdo público — sem isso, você recebe um erro do tipo `Sign in to confirm you're not a bot`.
 
 A forma mais estável de resolver isso é exportar um arquivo `cookies.txt` do seu navegador, em vez de deixar o yt-dlp ler o cookie do navegador em tempo real (isso costuma falhar no Windows por causa de lock de arquivo enquanto o navegador está aberto).
 
-1. Instale a extensão **"Get cookies.txt LOCALLY"** no seu navegador (Chrome, Brave, Edge etc.).
+1. Instale a extensão [Get cookies.txt LOCALLY](https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc) no seu navegador (Chrome, Brave, Edge etc.).
 2. Acesse `youtube.com` estando logado normalmente.
 3. Use a extensão para exportar os cookies do site como `cookies.txt`.
 4. Salve esse arquivo na mesma pasta do script.
 
 O script detecta automaticamente o `cookies.txt` se ele existir; caso contrário, tenta ler os cookies direto do navegador (menos confiável para execuções longas).
 
-## Passo 2: como o script está organizado
+## Como o script está organizado
 
 Em linhas gerais, o fluxo é:
 
 1. **Descoberta**: usa `extract_flat` do yt-dlp pra listar rapidamente todos os IDs de vídeo do canal, sem processar cada página individualmente.
 2. **Extração por vídeo**: para cada ID, busca os metadados completos (título, data, descrição) e tenta localizar uma faixa de legenda.
-3. **Prioridade de idioma**: a busca por legenda tenta primeiro `pt-BR`, depois `pt`, depois `pt-PT`, e só then qualquer outro idioma disponível — manual antes de automática.
+3. **Prioridade de idioma**: a busca por legenda tenta primeiro `pt-BR`, depois `pt`, depois `pt-PT`, e só então qualquer outro idioma disponível — manual antes de automática.
 4. **Parsing da legenda**: as legendas vêm em formatos como VTT, SRV3 ou TTML; o script converte tudo pra texto simples, removendo timestamps, tags e linhas repetidas.
 5. **Geração do Markdown**: monta um arquivo com front matter (título, data, fontes, link do vídeo) seguido da transcrição e, no final, o embed do player.
 
@@ -96,7 +96,7 @@ youtube: {yaml_quote(video_url)}
 """
 ```
 
-## Passo 3: rodando o script
+## Rodando o script
 
 Com o `cookies.txt` na mesma pasta, execute:
 
@@ -119,8 +119,8 @@ Isso acontece quando o yt-dlp tenta ler os cookies direto do navegador e ele est
 **`Requested format is not available`**
 Esse erro é sobre formato de *vídeo*, mesmo o script não baixando vídeo nenhum — ele aparece porque o yt-dlp tenta resolver um formato "padrão" internamente antes de retornar os metadados. Duas coisas ajudam:
 
-- Atualizar o yt-dlp, já que o YouTube muda o player com frequência: `pip install -U yt-dlp`.
-- Passar a opção `ignore_no_formats_error: True` nas configurações do `YoutubeDL`, que instrui a biblioteca a não travar quando não encontra formatos de vídeo — o que é irrelevante pro nosso caso.
+* Atualizar o yt-dlp, já que o YouTube muda o player com frequência: `pip install -U yt-dlp`.
+* Passar a opção `ignore_no_formats_error: True` nas configurações do `YoutubeDL`, que instrui a biblioteca a não travar quando não encontra formatos de vídeo — o que é irrelevante pro nosso caso.
 
 ## Adaptando pra outros canais
 

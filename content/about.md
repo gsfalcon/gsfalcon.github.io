@@ -1,10 +1,26 @@
-﻿---
-title: "Sobre"
-url: "/about/"
-ShowReadingTime: false
-ShowWordCount: false
+## 📚 Sobre
+
+Neste site você encontrará:
+
+- 💻 Projetos e desenvolvimento
+- 🤖 Inteligência Artificial
+- ⚙️ Automações e integrações
+- 🎬 Processamento de vídeo
+- 🌐 Web e infraestrutura
+- 🖧 Redes e DNS
+- 🔐 Segurança
+- 📝 Tutoriais e documentação
+- 🔧 Configurações e soluções técnicas
+
 ---
 
-Bem-vindo ao gsFalcon! Esse espaço é dedicado a conteúdo sobre tecnologia.
+## 🦅 gsFALCON
 
-Edite esse texto pra contar sua história.
+**Tecnologia, desenvolvimento e automação.**
+
+`Python` · `AI` · `JavaScript` · `n8n` · `FFmpeg` · `Web` · `DNS` · `Networks` · `GitHub`
+
+---
+
+> *Aprender. Desenvolver. Automatizar.*
+```

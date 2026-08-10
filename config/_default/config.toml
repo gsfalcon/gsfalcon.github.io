@@ -1,0 +1,9 @@
+theme = "hugo-theme-stack"
+baseurl = "https://gsfalcon.com/"
+title = "gsFALCON"
+locale = "pt-BR"
+defaultContentLanguage = "pt"
+hasCJKLanguage = false
+
+[pagination]
+    pagerSize = 5

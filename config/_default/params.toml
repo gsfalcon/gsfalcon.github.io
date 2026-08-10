@@ -1,0 +1,55 @@
+mainSections = ["posts"]
+rssFullContent = true
+favicon = "favicon.ico"
+SortBy = "default"
+
+[footer]
+    since = 2026
+    customText = ""
+
+[dateFormat]
+    published = ":date_full"
+    lastUpdated = ":date_full"
+
+[sidebar]
+    subtitle = "Blog pessoal sobre tecnologia"
+    avatar = ""
+
+[article]
+    headingAnchor = true
+    math = false
+    readingTime = true
+
+    [article.license]
+        enabled = false
+
+[widgets]
+    homepage = [
+        { type = "search" },
+        { type = "archives", params = { limit = 5 } },
+        { type = "tag-cloud", params = { limit = 20 } },
+    ]
+    page = [{ type = "toc" }]
+
+[colorScheme]
+    toggle = true
+    default = "auto"
+
+[comments]
+    enabled = true
+    provider = "giscus"
+
+    [comments.giscus]
+        repo = "gsfalcon/gsfalcon.github.io"
+        repoID = "R_kgDOTv_eEw"
+        category = "Comments"
+        categoryID = "DIC_kwDOTv_eE84DC6lv"
+        mapping = "pathname"
+        lightTheme = "light"
+        darkTheme = "dark_dimmed"
+        reactionsEnabled = 1
+        emitMetadata = 0
+        inputPosition = "top"
+        lang = "pt"
+        strict = 0
+        loading = "lazy"

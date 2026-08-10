@@ -1,13 +1,18 @@
----
-title: "gsFALCON"
----
+# 🦅 gsFALCON
 
-# gsFALCON 🦅
+> **Tecnologia · Inteligência Artificial · Automação · Desenvolvimento · Infraestrutura**
 
-Bem-vindo! Esse é meu espaço pessoal sobre tecnologia.
+Sou **gsFALCON**, entusiasta de tecnologia e desenvolvimento, com interesse em criar, explorar e automatizar soluções utilizando diferentes ferramentas e plataformas.
 
-## Links úteis
+Este site reúne projetos, estudos, tutoriais, configurações e conhecimentos relacionados principalmente a **programação, inteligência artificial, automação e infraestrutura**.
 
-- [Posts](/posts/)
-- [Sobre mim](/about/)
-- [GitHub](https://github.com/gsfalcon)
+## 💻 Principais áreas
+
+| Área | Tecnologias e temas |
+|---|---|
+| 🐍 **Programação** | Python · JavaScript · APIs · Scripts |
+| 🤖 **Inteligência Artificial** | IA generativa · LLMs · Imagens · Automação |
+| ⚙️ **Automação** | n8n · Workflows · Webhooks · APIs · Integrações |
+| 🎬 **Vídeo** | FFmpeg · Codecs · Conversão · Compressão |
+| 🌐 **Web & Infraestrutura** | Sites estáticos · GitHub · Deploy · DNS · Servidores |
+| 🖧 **Redes & Segurança** | Redes · Configuração · Infraestrutura · Segurança |

@@ -23,16 +23,18 @@ Se você converte lote de vídeos antigos (séries, gravações, arquivos pessoa
 
 Neste tutorial eu mostro o script Python que uso pra isso, como ele decide entre GPU e CPU, como monta a cadeia de filtros de áudio, e como ele processa vários vídeos em paralelo com um painel ao vivo no terminal.
 
+![](/images/uploads/captura-de-tela-2026-08-10-053146.png "Script Conversor de Vídeos em Lote")
+
 ## 🧠 O que o script faz
 
-- 📂 Recebe uma ou mais pastas (separadas por vírgula) e varre recursivamente atrás de vídeos.
-- 📦 Deixa escolher o container de saída (MKV ou MP4).
-- 🎯 Deixa escolher a resolução alvo (Original, 480p, 720p, 1080p, 2160p) — só redimensiona se for necessário.
-- 🔊 Três modos de áudio: normalização para -14 LUFS, manter original (copy), ou um "Voice Enhancer" experimental para áudio abafado de fitas antigas.
-- ⚡ Detecta GPU NVIDIA (NVENC) automaticamente, com teste real de encode — não só verifica se está compilado no ffmpeg — e cai pra CPU (libx264) se algo falhar.
-- 📝 Preserva nomes e idiomas das faixas de áudio/legenda, e embute `.srt` externo automaticamente se encontrar um com o mesmo nome do vídeo.
-- 🧵 Roda em paralelo (1 a 4 vídeos simultâneos) com um painel fixo no terminal, uma linha por worker.
-- 🗂️ Salva tudo numa pasta `_NEW/` espelhando a estrutura de subpastas original, sem tocar nos arquivos fonte.
+* 📂 Recebe uma ou mais pastas (separadas por vírgula) e varre recursivamente atrás de vídeos.
+* 📦 Deixa escolher o container de saída (MKV ou MP4).
+* 🎯 Deixa escolher a resolução alvo (Original, 480p, 720p, 1080p, 2160p) — só redimensiona se for necessário.
+* 🔊 Três modos de áudio: normalização para -14 LUFS, manter original (copy), ou um "Voice Enhancer" experimental para áudio abafado de fitas antigas.
+* ⚡ Detecta GPU NVIDIA (NVENC) automaticamente, com teste real de encode — não só verifica se está compilado no ffmpeg — e cai pra CPU (libx264) se algo falhar.
+* 📝 Preserva nomes e idiomas das faixas de áudio/legenda, e embute `.srt` externo automaticamente se encontrar um com o mesmo nome do vídeo.
+* 🧵 Roda em paralelo (1 a 4 vídeos simultâneos) com um painel fixo no terminal, uma linha por worker.
+* 🗂️ Salva tudo numa pasta `_NEW/` espelhando a estrutura de subpastas original, sem tocar nos arquivos fonte.
 
 ⚠️ Importante: o script **não apaga nem sobrescreve os originais** — a saída sempre vai para `_NEW/`, ao lado dos arquivos de entrada.
 
@@ -92,7 +94,7 @@ for t in tracks:
     )
 ```
 
-## 🩺 Voice Enhancer [BETA]
+## 🩺 Voice Enhancer \[BETA]
 
 Esse modo é pensado pra vídeos antigos (VHS/Hi8) com áudio abafado. Ele encadeia vários filtros de áudio antes da normalização: corte de graves (`highpass`), redução de ruído por FFT (`afftdn`), realce de diálogo (`dialoguenhance`), um leve boost na faixa de presença vocal (2-4kHz) e compressão, só então normalizando para -14 LUFS. É experimental — o resultado varia de vídeo pra vídeo.
 

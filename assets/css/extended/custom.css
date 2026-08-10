@@ -5,3 +5,8 @@
   --secondary: #9ca3af;
   --border: #374151;
 }
+
+.terms-tags a,
+.post-tags a {
+  text-transform: lowercase;
+}

@@ -1,5 +1,5 @@
 ﻿baseURL: "https://gsfalcon.com/"
-title: "gsFALCON"
+title: "🦅 gsFALCON"
 theme: PaperMod
 locale: "pt-BR"
 defaultContentLanguage: "pt"
@@ -19,7 +19,7 @@ params:
   env: production
   defaultTheme: auto
   ShowReadingTime: true
-  ShowShareButtons: false
+  ShowShareButtons: true
   ShowPostNavLinks: false
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true

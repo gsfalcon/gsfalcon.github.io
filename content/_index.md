@@ -1,6 +1,4 @@
-# 🦅 gsFALCON
-
-> **Tecnologia · Inteligência Artificial · Automação · Desenvolvimento · Infraestrutura**
+# **Tecnologia · Inteligência Artificial · Automação · Desenvolvimento**
 
 Sou **gsFALCON**, entusiasta de tecnologia e desenvolvimento, com interesse em criar, explorar e automatizar soluções utilizando diferentes ferramentas e plataformas.
 

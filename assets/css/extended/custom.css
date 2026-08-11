@@ -10,3 +10,9 @@
 .post-tags a {
   text-transform: lowercase;
 }
+
+.toc ul,
+.toc ol {
+  list-style: none;
+  padding-left: 0;
+}

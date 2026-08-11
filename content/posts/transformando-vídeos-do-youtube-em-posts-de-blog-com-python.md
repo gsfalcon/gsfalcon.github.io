@@ -135,4 +135,4 @@ Vale lembrar que a transcrição automática do YouTube nem sempre tem pontuaç�
 
 ## Download ⬇️
 
-[ YouTube to Markdown](/downloads/youtube-to-markdown.zip)
+[YouTube to Markdown](/downloads/youtube-to-markdown.zip)

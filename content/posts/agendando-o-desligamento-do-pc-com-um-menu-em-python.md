@@ -5,13 +5,17 @@ draft: false
 description: Script Python com menu no terminal para agendar o desligamento do
   PC, com confirmação, cancelamento e suporte a Windows e Linux
 tags:
-  - Script
-  - Python
-categories:
-  - Automação
   - Windows
   - Python
+  - Automação
   - Linux
+  - Script
+categories:
+  - Windows
+  - Python
+  - Automação
+  - Linux
+  - Script
 cover:
   image: /images/uploads/shutdown.png
 ShowToc: true

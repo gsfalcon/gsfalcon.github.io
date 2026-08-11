@@ -8,8 +8,8 @@ SortBy = "default"
     customText = ""
 
 [dateFormat]
-    published = ":date_full"
-    lastUpdated = ":date_full"
+    published = "02 January 2006"
+    lastUpdated = "02 January 2006"
 
 [sidebar]
     subtitle = "Blog pessoal sobre tecnologia"
@@ -46,7 +46,7 @@ SortBy = "default"
         categoryID = "DIC_kwDOTv_eE84DC6lv"
         mapping = "pathname"
         lightTheme = "light"
-        darkTheme = "dark_dimmed"
+        darkTheme = "dark"
         reactionsEnabled = 1
         emitMetadata = 0
         inputPosition = "top"

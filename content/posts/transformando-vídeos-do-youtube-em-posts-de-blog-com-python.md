@@ -2,6 +2,7 @@
 title: Transformando vídeos do YouTube em posts de blog com Python
 date: 2026-08-09T18:59:00.000-03:00
 draft: false
+image: "/images/uploads/youtube-to-post.png"
 description: Tutorial passo a passo para extrair transcrições de vídeos públicos
   do YouTube e gerar posts em Markdown automaticamente, usando Python e yt-dlp
 tags:

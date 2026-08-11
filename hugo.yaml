@@ -1,0 +1,53 @@
+﻿baseURL: "https://gsfalcon.com/"
+title: "🦅 gsFALCON"
+theme: PaperMod
+locale: "pt-BR"
+defaultContentLanguage: "pt"
+
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+params:
+  env: production
+  defaultTheme: auto
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowPostNavLinks: false
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowToc: true
+  dateFormat: "02 January 2006"
+  assets:
+    favicon: "/favicon.ico"
+    favicon16x16: "/favicon-16x16.png"
+    favicon32x32: "/favicon-32x32.png"
+    apple_touch_icon: "/apple-touch-icon.png"
+  socialIcons:
+    - name: github
+      url: "https://github.com/gsfalcon"
+
+menu:
+  main:
+    - name: Posts
+      url: /posts/
+      weight: 1
+    - name: Tags
+      url: /tags/
+      weight: 2
+    - name: Arquivo
+      url: /archive/
+      weight: 3
+    - name: Busca
+      url: /search/
+      weight: 4
+    - name: Sobre
+      url: /about/
+      weight: 5

@@ -1,0 +1,22 @@
+theme = "blowfish"
+baseURL = "https://gsfalcon.com/"
+title = "gsFALCON"
+defaultContentLanguage = "pt-br"
+enableRobotsTXT = true
+summaryLength = 0
+buildDrafts = false
+buildFuture = false
+enableEmoji = true
+
+[pagination]
+    pagerSize = 10
+
+[imaging]
+    anchor = "Center"
+
+[taxonomies]
+    tag = "tags"
+    category = "categories"
+
+[outputs]
+    home = ["HTML", "RSS", "JSON"]

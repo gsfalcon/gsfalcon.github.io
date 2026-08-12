@@ -1,0 +1,13 @@
+languageName = "Português"
+weight = 1
+
+[params]
+    description = "Blog pessoal sobre tecnologia"
+
+[params.author]
+    name = "gsFALCON"
+    headline = "Blog pessoal sobre tecnologia"
+    bio = "Automação, scripts e projetos pessoais em Python."
+    links = [
+        { github = "https://github.com/gsfalcon" },
+    ]

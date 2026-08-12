@@ -2,6 +2,7 @@
 title: Agendando o desligamento do PC com um menu em Python
 date: 2026-08-10T18:01:00.000-03:00
 draft: false
+featureimage: "https://gsfalcon.com/images/uploads/shutdown.png"
 description: Script Python com menu no terminal para agendar o desligamento do
   PC, com confirmação, cancelamento e suporte a Windows e Linux
 tags:

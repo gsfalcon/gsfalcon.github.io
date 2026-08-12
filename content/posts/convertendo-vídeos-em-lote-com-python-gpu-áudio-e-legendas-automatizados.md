@@ -2,6 +2,7 @@
 title: "Convertendo vídeos em lote com Python: GPU, áudio e legendas automatizados"
 date: 2026-08-10T05:10:00.000-03:00
 draft: false
+featureimage: "https://gsfalcon.com/images/uploads/convert-videos.png"
 description: Script para converter lotes de vídeos (MKV/MP4), com aceleração por
   GPU NVIDIA, normalização de áudio e legendas automáticas, usando Python e
   ffmpeg

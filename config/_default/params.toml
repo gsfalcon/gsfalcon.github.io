@@ -1,4 +1,4 @@
-colorScheme = "blowfish"
+colorScheme = "fire"
 defaultAppearance = "dark"
 autoSwitchAppearance = true
 
@@ -27,9 +27,15 @@ mainSections = ["posts"]
 
 [article]
     showDate = true
+    showHero = true
+    heroStyle = "background"
+    showBreadcrumbs = true
+    sharingLinks = ["linkedin", "twitter", "bluesky", "reddit", "whatsapp", "telegram"]
     showReadingTime = true
     showTableOfContents = true
     showTaxonomies = true
+    showCategories = false
+    showTags = true
 
 [list]
     showCards = true

@@ -1,11 +1,11 @@
-﻿backend:
+backend:
   name: github
   repo: gsfalcon/gsfalcon.github.io
   branch: main
   base_url: https://sveltia-cms-auth.gsfalcon.workers.dev
 
 media_folder: "static/images/uploads"
-public_folder: "/images/uploads"
+public_folder: "https://gsfalcon.com/images/uploads"
 
 collections:
   - name: "posts"

@@ -1,8 +1,8 @@
 ---
+draft: false
+featureimage: https://gsfalcon.com/images/uploads/youtube-to-post.png
 title: Transformando vídeos do YouTube em posts de blog com Python
 date: 2026-08-09T18:59:00.000-03:00
-draft: false
-featureimage: "https://gsfalcon.com/images/uploads/youtube-to-post.png"
 description: Tutorial passo a passo para extrair transcrições de vídeos públicos
   do YouTube e gerar posts em Markdown automaticamente, usando Python e yt-dlp
 tags:
@@ -27,7 +27,7 @@ Se você mantém um blog e quer transformar o conteúdo de um canal do YouTube e
 
 Neste tutorial eu mostro o script Python que uso pra isso, o passo a passo de instalação, e como resolver os erros mais comuns (bloqueio de bot, cookies, formatos indisponíveis).
 
-## O que o script faz 🧠
+## O que o script faz
 
 - Recebe a URL da página de vídeos de um canal público do YouTube.
 - Descobre todos os vídeos daquele canal.
@@ -38,7 +38,7 @@ Neste tutorial eu mostro o script Python que uso pra isso, o passo a passo de in
 
 Importante: o script **não baixa vídeo nenhum**. Ele só lê metadados e legendas, que são informações públicas expostas pela própria página do YouTube.
 
-## Dependências 📦
+## Dependências
 
 Você precisa de Python 3.10+ e da biblioteca `yt-dlp`, que é o motor por trás da extração de metadados e legendas.
 
@@ -48,7 +48,7 @@ pip install yt-dlp
 
 Não precisa de `ffmpeg` nem de nada relacionado a vídeo/áudio, já que não há download de mídia. 
 
-## Autenticação (cookies) 🍪
+## Autenticação (cookies)
 
 O YouTube passou a exigir autenticação para várias operações em lote, mesmo em conteúdo público — sem isso, você recebe um erro do tipo `Sign in to confirm you're not a bot`.
 
@@ -61,7 +61,7 @@ A forma mais estável de resolver isso é exportar um arquivo `cookies.txt` do s
 
 O script detecta automaticamente o `cookies.txt` se ele existir; caso contrário, tenta ler os cookies direto do navegador (menos confiável para execuções longas).
 
-## Como o script está organizado ⚙️
+## Como o script está organizado
 
 Em linhas gerais, o fluxo é:
 
@@ -102,7 +102,7 @@ youtube: {yaml_quote(video_url)}
 """
 ```
 
-## Rodando o script ▶️
+## Rodando o script
 
 Com o `cookies.txt` na mesma pasta, execute:
 
@@ -114,21 +114,21 @@ Se você não passar nenhuma URL, o script usa uma URL padrão definida na const
 
 Os arquivos `.md` são criados numa pasta `posts/`, um por vídeo, nomeados com um slug do título + o ID do vídeo (isso evita colisão de nomes e permite identificar vídeos já processados em execuções futuras).
 
-## Problemas comuns e como resolver 🚑
+## Problemas comuns e como resolver
 
-** `Sign in to confirm you're not a bot`**
+`Sign in to confirm you're not a bot`
 Falta autenticação. Siga o Passo 1 e gere o `cookies.txt`.
 
-** `Could not copy Chrome cookie database`**
+`Could not copy Chrome cookie database`
 Isso acontece quando o yt-dlp tenta ler os cookies direto do navegador e ele está aberto (o arquivo fica travado). A solução é usar o `cookies.txt` exportado manualmente em vez de depender do navegador.
 
-** `Requested format is not available`**
-Esse erro é sobre formato de *vídeo*, mesmo o script não baixando vídeo nenhum — ele aparece porque o yt-dlp tenta resolver um formato "padrão" internamente antes de retornar os metadados. Duas coisas ajudam:
+`Requested format is not available`
+Esse erro é sobre formato de vídeo, mesmo o script não baixando vídeo nenhum — ele aparece porque o yt-dlp tenta resolver um formato "padrão" internamente antes de retornar os metadados. Duas coisas ajudam:
 
 - Atualizar o yt-dlp, já que o YouTube muda o player com frequência: `pip install -U yt-dlp`.
 - Passar a opção `ignore_no_formats_error: True` nas configurações do `YoutubeDL`, que instrui a biblioteca a não travar quando não encontra formatos de vídeo — o que é irrelevante pro nosso caso.
 
-## Adaptando pra outros canais 🔧
+## Adaptando pra outros canais
 
 Pra reaproveitar em qualquer canal público, só troque a URL passada como argumento (ou a constante `DEFAULT_CHANNEL_URL`). Se o conteúdo majoritário for em outro idioma, ajuste a lista `preferred` na função de extração de legendas.
 

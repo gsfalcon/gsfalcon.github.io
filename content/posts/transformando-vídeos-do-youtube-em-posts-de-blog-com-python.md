@@ -34,7 +34,7 @@ Neste tutorial eu mostro o script Python que uso pra isso, o passo a passo de in
 - Para cada vídeo, tenta baixar a legenda pública (manual ou automática), com preferência por português.
 - Preserva a descrição completa do vídeo (que geralmente contém links e fontes citadas).
 - Gera um arquivo `.md` por vídeo, com metadados no cabeçalho (front matter) e o embed do player do YouTube no final.
-- ⏭ Pula vídeos que já foram processados antes, então dá pra rodar de novo sem duplicar trabalho.
+- Pula vídeos que já foram processados antes, então dá pra rodar de novo sem duplicar trabalho.
 
 Importante: o script **não baixa vídeo nenhum**. Ele só lê metadados e legendas, que são informações públicas expostas pela própria página do YouTube.
 
@@ -134,6 +134,6 @@ Pra reaproveitar em qualquer canal público, só troque a URL passada como argum
 
 Vale lembrar que a transcrição automática do YouTube nem sempre tem pontuação ou formatação de parágrafos — o script faz uma limpeza mínima, mas uma revisão editorial (manual ou com apoio de alguma IA) antes de publicar costuma deixar o texto bem mais legível.
 
-## Download ⬇️
+## Download
 
 [YouTube to Markdown](/downloads/youtube-to-markdown.zip)

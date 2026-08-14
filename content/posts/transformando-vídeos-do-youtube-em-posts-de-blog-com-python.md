@@ -16,7 +16,7 @@ categories:
   - yt-dlp
   - YouTube
 cover:
-  image: /images/uploads/youtube-to-post.png
+  image: ""
   alt: Transformando vídeos do YouTube em posts de blog com Python
   caption: ""
 ShowToc: true

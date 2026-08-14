@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" width="1600" height="900">
+  <defs>
+    <linearGradient id="bgFire" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#1a0a05"/>
+    </linearGradient>
+    <linearGradient id="wave1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#9a3412"/>
+      <stop offset="50%" stop-color="#c2410c"/>
+      <stop offset="100%" stop-color="#9a3412"/>
+    </linearGradient>
+    <linearGradient id="wave2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#c2410c"/>
+      <stop offset="50%" stop-color="#ea580c"/>
+      <stop offset="100%" stop-color="#c2410c"/>
+    </linearGradient>
+    <linearGradient id="wave3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ea580c"/>
+      <stop offset="50%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#fb923c" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#fb923c" stop-opacity="0"/>
+    </radialGradient>
+    <style>
+      .layer1 { animation: drift1 22s ease-in-out infinite; }
+      .layer2 { animation: drift2 28s ease-in-out infinite; }
+      .layer3 { animation: drift3 34s ease-in-out infinite; }
+      .pulse { animation: pulse 9s ease-in-out infinite; }
+      @keyframes drift1 {
+        0%   { transform: translate(0px, 0px); }
+        50%  { transform: translate(-60px, 22px); }
+        100% { transform: translate(0px, 0px); }
+      }
+      @keyframes drift2 {
+        0%   { transform: translate(0px, 0px); }
+        50%  { transform: translate(70px, -18px); }
+        100% { transform: translate(0px, 0px); }
+      }
+      @keyframes drift3 {
+        0%   { transform: translate(0px, 0px); }
+        50%  { transform: translate(-40px, -30px); }
+        100% { transform: translate(0px, 0px); }
+      }
+      @keyframes pulse {
+        0%   { opacity: 0.55; }
+        50%  { opacity: 0.9; }
+        100% { opacity: 0.55; }
+      }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1600" height="900" fill="url(#bgFire)"/>
+  <circle class="pulse" cx="820" cy="360" r="420" fill="url(#glow)"/>
+
+  <g class="layer1" opacity="0.55">
+    <path d="M0,620 C220,560 380,680 620,600 C860,520 1000,660 1230,580 C1400,520 1520,600 1600,560 L1600,900 L0,900 Z" fill="url(#wave1)"/>
+  </g>
+
+  <g class="layer2" opacity="0.65">
+    <path d="M0,700 C260,640 420,750 660,680 C900,610 1040,730 1260,660 C1420,610 1520,680 1600,650 L1600,900 L0,900 Z" fill="url(#wave2)"/>
+  </g>
+
+  <g class="layer3" opacity="0.8">
+    <path d="M0,780 C240,730 460,820 700,760 C940,700 1100,800 1320,740 C1460,700 1540,760 1600,740 L1600,900 L0,900 Z" fill="url(#wave3)"/>
+  </g>
+</svg>

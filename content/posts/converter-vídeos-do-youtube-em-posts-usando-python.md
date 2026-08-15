@@ -125,5 +125,7 @@ Esse pipeline de duas etapas já entrega o essencial: do canal ao post organizad
 
 ## Downloads
 
-[YouTube to Markdown](/downloads/youtube-to-markdown.zip)
-[AI Rewrite Posts ](/downloads/rewrite-posts.zip)
+| File | Download |
+|---|---|
+| YouTube to Markdown | [youtube-to-markdown.zip](/downloads/youtube-to-markdown.zip) |
+| AI Rewrite Posts | [rewrite-posts.zip](/downloads/rewrite-posts.zip) |

@@ -1,11 +1,10 @@
 ---
 draft: false
 featureimage: https://gsfalcon.com/images/uploads/convert-videos.png
-title: "Convertendo vídeos em lote com Python: GPU, áudio e legendas automatizados"
+title: Converter vídeos em lote com Python e NVENC
 date: 2026-08-10T05:10:00.000-03:00
-description: Script para converter lotes de vídeos (MKV/MP4), com aceleração por
-  GPU NVIDIA, normalização de áudio e legendas automáticas, usando Python e
-  ffmpeg
+description: Script para converter vídeos em lote (MKV/MP4), com aceleração por
+  GPU NVIDIA e normalização de áudio usando Python e ffmpeg
 tags:
   - Python
   - Windows

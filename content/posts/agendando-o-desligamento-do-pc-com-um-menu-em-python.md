@@ -1,7 +1,7 @@
 ---
 draft: false
 featureimage: https://gsfalcon.com/images/uploads/shutdown.png
-title: Agendando o desligamento do PC com um menu em Python
+title: Agendando o desligamento do PC com um menu usando Python
 date: 2026-08-10T18:01:00.000-03:00
 description: Script Python com menu no terminal para agendar o desligamento do
   PC, com confirmação, cancelamento e suporte a Windows e Linux
@@ -89,7 +89,7 @@ else:
 
 ## Alinhamento visual da caixa
 
-Esse é o detalhe menos óbvio do script: no terminal, nem todo caractere ocupa a mesma largura. Emojis e alguns símbolos (como `⏰`, ``, relógios analógicos) contam como 2 colunas visuais em terminais modernos, mas a função padrão do Python (`unicodedata.east_asian_width`) não reconhece isso pra boa parte deles. O script mantém duas listas manuais — `_WIDE_EXTRA` (caracteres que ocupam 2 colunas) e `_ZERO_WIDTH` (seletores de variação e caracteres invisíveis que ocupam 0) — e usa isso pra preencher cada linha da caixa com a quantidade exata de espaços, mantendo as bordas alinhadas.
+Esse é o detalhe menos óbvio do script: no terminal, nem todo caractere ocupa a mesma largura. Emojis e alguns símbolos contam como 2 colunas visuais em terminais modernos, mas a função padrão do Python (`unicodedata.east_asian_width`) não reconhece isso pra boa parte deles. O script mantém duas listas manuais — `_WIDE_EXTRA` (caracteres que ocupam 2 colunas) e `_ZERO_WIDTH` (seletores de variação e caracteres invisíveis que ocupam 0) — e usa isso pra preencher cada linha da caixa com a quantidade exata de espaços, mantendo as bordas alinhadas.
 
 ## Rodando o script
 
@@ -101,19 +101,19 @@ O menu aparece direto: escolha um número de 1 a 7 pra agendar, 8 pra cancelar t
 
 ## Problemas comuns e como resolver
 
-** Agendamento não funciona no Linux**
+ **Agendamento não funciona no Linux**
 Confirme se o pacote `at` está instalado (`sudo apt install at`) e se o comando `sudo shutdown` não está pedindo senha interativa — senão o `subprocess.run` trava ou falha silenciosamente.
 
-** Caixa do menu desalinhada no terminal**
+ **Caixa do menu desalinhada no terminal**
 Alguns terminais (principalmente emuladores antigos) renderizam emojis com largura diferente da esperada. Se isso acontecer, vale ajustar as listas `_WIDE_EXTRA`/`_ZERO_WIDTH` pros símbolos específicos que estão bugando.
 
-** Cores ANSI não aparecem no Windows**
+ **Cores ANSI não aparecem no Windows**
 O script já chama `enable_ansi_windows()` no início, que ativa o modo de cores via `SetConsoleMode`. Se ainda assim não funcionar, geralmente é um terminal muito antigo (cmd.exe legado) que não suporta ANSI.
 
-** Quero cancelar sem abrir o menu**
+ **Quero cancelar sem abrir o menu**
 Não tem atalho de linha de comando pra isso hoje — a opção "8" do menu é o único jeito. Dá pra adicionar suporte a `sys.argv` se quiser esse atalho.
 
-## Adaptando 🔧
+## Adaptando
 
 Pra mudar as opções de horário, edite as listas `opcoes` (na tela) e `opcoes_map` (na lógica) em paralelo — são duas listas separadas que precisam ficar sincronizadas. Pra mudar a largura da caixa, ajuste a constante `W` no topo do arquivo.
 

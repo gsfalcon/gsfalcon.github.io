@@ -120,16 +120,16 @@ Os arquivos convertidos vão para `_NEW/` dentro de cada pasta informada, espelh
 
 ## Problemas comuns e como resolver
 
-** `'ffmpeg' nao encontrado no PATH`**
+`'ffmpeg' nao encontrado no PATH`
 Instale o ffmpeg e garanta que `ffmpeg` e `ffprobe` estejam acessíveis no terminal.
 
-** Conversão cai pra CPU mesmo tendo GPU NVIDIA**
+**Conversão cai pra CPU mesmo tendo GPU NVIDIA**
 O teste de encode real (`detect_gpu`) pode estar falhando por driver desatualizado ou falta do `nvidia-smi`. O motivo exato aparece no banner inicial, na linha "Motivo: ...".
 
-** Legenda em imagem (PGS) sumiu ao converter pra MP4**
+**Legenda em imagem (PGS) sumiu ao converter pra MP4**
 Esperado — o container MP4 só aceita legenda de texto (`mov_text`). Pra preservar legendas bitmap, use MKV.
 
-** GPU falha no meio da conversão**
+**GPU falha no meio da conversão**
 O script já tenta automaticamente de novo por CPU (`force_cpu=True`) antes de reportar erro — então normalmente nem é preciso intervir.
 
 ## Adaptando

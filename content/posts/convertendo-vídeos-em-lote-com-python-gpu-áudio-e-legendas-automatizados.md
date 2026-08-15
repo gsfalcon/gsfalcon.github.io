@@ -1,8 +1,8 @@
 ---
+draft: false
+featureimage: https://gsfalcon.com/images/uploads/convert-videos.png
 title: "Convertendo vídeos em lote com Python: GPU, áudio e legendas automatizados"
 date: 2026-08-10T05:10:00.000-03:00
-draft: false
-featureimage: "https://gsfalcon.com/images/uploads/convert-videos.png"
 description: Script para converter lotes de vídeos (MKV/MP4), com aceleração por
   GPU NVIDIA, normalização de áudio e legendas automáticas, usando Python e
   ffmpeg
@@ -19,7 +19,7 @@ categories:
   - Áudio
   - ffmpeg
 cover:
-  image: /images/uploads/convert-videos.png
+  image: ""
   alt: Script para converter lotes de vídeos (MKV/MP4), com aceleração por GPU
     NVIDIA, normalização de áudio e legendas automáticas, usando Python e ffmpeg
 ShowToc: true
@@ -32,7 +32,7 @@ Neste tutorial eu mostro o script Python que uso pra isso, como ele decide entre
 
 ![](/images/uploads/captura-de-tela-2026-08-10-053146.png "Script Conversor de Vídeos em Lote")
 
-## O que o script faz 🧠
+## O que o script faz
 
 * Recebe uma ou mais pastas (separadas por vírgula) e varre recursivamente atrás de vídeos.
 * Deixa escolher o container de saída (MKV ou MP4).
@@ -45,7 +45,7 @@ Neste tutorial eu mostro o script Python que uso pra isso, como ele decide entre
 
 Importante: o script **não apaga nem sobrescreve os originais** — a saída sempre vai para `_NEW/`, ao lado dos arquivos de entrada.
 
-## Dependências 📦
+## Dependências
 
 Você precisa de Python 3.10+ e do `ffmpeg` + `ffprobe` no PATH.
 
@@ -56,7 +56,7 @@ Você precisa de Python 3.10+ e do `ffmpeg` + `ffprobe` no PATH.
 
 Não precisa de nenhuma biblioteca Python externa — só a standard library (`subprocess`, `pathlib`, `threading`, `queue`, `json`).
 
-## Como o script está organizado ⚙️
+## Como o script está organizado
 
 Em linhas gerais, o fluxo é:
 
@@ -101,15 +101,15 @@ for t in tracks:
     )
 ```
 
-## Voice Enhancer \[BETA] 🩺
+## Voice Enhancer [BETA]
 
 Esse modo é pensado pra vídeos antigos (VHS/Hi8) com áudio abafado. Ele encadeia vários filtros de áudio antes da normalização: corte de graves (`highpass`), redução de ruído por FFT (`afftdn`), realce de diálogo (`dialoguenhance`), um leve boost na faixa de presença vocal (2-4kHz) e compressão, só então normalizando para -14 LUFS. É experimental — o resultado varia de vídeo pra vídeo.
 
-## Paralelismo 🧵
+## Paralelismo
 
 Ao escolher rodar 2, 3 ou 4 vídeos ao mesmo tempo, o script usa uma fila (`queue.Queue`) e N threads fixas, cada uma dona de uma linha do painel. O painel redesenha a tela a cada atualização, movendo o cursor pra cima e limpando até o fim — evita sobra de texto quando uma linha nova é mais curta que a anterior.
 
-## Rodando o script ▶️
+## Rodando o script
 
 ```bash
 python conversor_video.py
@@ -119,7 +119,7 @@ O script vai pedir a(s) pasta(s), depois formato, resolução, modo de áudio e 
 
 Os arquivos convertidos vão para `_NEW/` dentro de cada pasta informada, espelhando as subpastas originais.
 
-## Problemas comuns e como resolver 🚑
+## Problemas comuns e como resolver
 
 ** `'ffmpeg' nao encontrado no PATH`**
 Instale o ffmpeg e garanta que `ffmpeg` e `ffprobe` estejam acessíveis no terminal.
@@ -133,10 +133,10 @@ Esperado — o container MP4 só aceita legenda de texto (`mov_text`). Pra prese
 ** GPU falha no meio da conversão**
 O script já tenta automaticamente de novo por CPU (`force_cpu=True`) antes de reportar erro — então normalmente nem é preciso intervir.
 
-## Adaptando 🔧
+## Adaptando
 
 Pra mudar o padrão de qualidade da GPU, ajuste `-cq` em `build_cmd` (menor = mais qualidade, mais lento). Pra mudar o alvo de loudness, edite `TARGET_LUFS`/`TARGET_TP`/`TARGET_LRA` no topo do arquivo.
 
-## Download ⬇️
+## Download
 
 [Conversor de Vídeo em Lote](/downloads/conversor-de-video-em-lote.zip)

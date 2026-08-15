@@ -19,117 +19,111 @@ ShowToc: true
 comments: false
 image: /images/uploads/youtube-to-post.png
 ---
-Se você mantém um blog e quer transformar o conteúdo de um canal do YouTube em posts de texto, dá pra automatizar praticamente tudo: descobrir os vídeos do canal, puxar a transcrição pública (legendas) de cada um, e gerar um arquivo Markdown pronto — sem baixar nenhum vídeo. 
+Todo canal do YouTube que fala bastante — notícias, comentário, opinião — é, na prática, um arquivo enorme de conteúdo em texto que ninguém nunca vai ler, porque está preso dentro de vídeo. Neste tutorial eu mostro como transformar isso num blog: um pipeline em duas etapas que primeiro extrai a transcrição pública de todos os vídeos de um canal, e depois usa um modelo de IA rodando na sua própria máquina pra reescrever e organizar cada transcrição num post de verdade — com parágrafos, pontuação e divisão por assunto.
 
-Neste tutorial eu mostro o script Python que uso pra isso, o passo a passo de instalação, e como resolver os erros mais comuns (bloqueio de bot, cookies, formatos indisponíveis).
+As duas etapas são scripts Python independentes. A primeira não depende de nada além do `yt-dlp`. A segunda usa o [Ollama](https://ollama.com), então tudo roda local, sem mandar seu conteúdo pra API de terceiro nenhuma.
 
-## O que o script faz
+## Visão geral do pipeline
 
-- Recebe a URL da página de vídeos de um canal público do YouTube.
-- Descobre todos os vídeos daquele canal.
-- Para cada vídeo, tenta baixar a legenda pública (manual ou automática), com preferência por português.
-- Preserva a descrição completa do vídeo (que geralmente contém links e fontes citadas).
-- Gera um arquivo `.md` por vídeo, com metadados no cabeçalho (front matter) e o embed do player do YouTube no final.
-- Pula vídeos que já foram processados antes, então dá pra rodar de novo sem duplicar trabalho.
-
-Importante: o script **não baixa vídeo nenhum**. Ele só lê metadados e legendas, que são informações públicas expostas pela própria página do YouTube.
+1. **Descoberta e transcrição**: um script varre a página de vídeos de um canal, baixa a legenda pública (não o vídeo) de cada um, e gera um `.md` por vídeo com título, data, descrição original e a transcrição crua.
+2. **Reescrita com IA local**: um segundo script lê cada `.md` gerado, manda a transcrição crua pra um modelo rodando no Ollama, e recebe de volta um texto reorganizado por tema, com pontuação e parágrafos.
+   Nenhuma das duas etapas baixa vídeo. É tudo baseado em metadados e legendas públicas.
 
 ## Dependências
 
-Você precisa de Python 3.10+ e da biblioteca `yt-dlp`, que é o motor por trás da extração de metadados e legendas.
+```bash
+pip install yt-dlp requests
+```
+
+Além disso, instale o [Ollama](https://ollama.com/download) e baixe um modelo — no meu caso usei o `qwen3:8b`, que roda bem numa GPU de 8GB de VRAM:
 
 ```bash
-pip install yt-dlp
+ollama pull qwen3:8b
 ```
 
-Não precisa de `ffmpeg` nem de nada relacionado a vídeo/áudio, já que não há download de mídia. 
+## Extraindo as transcrições do canal
 
-## Autenticação (cookies)
+### Autenticação
 
-O YouTube passou a exigir autenticação para várias operações em lote, mesmo em conteúdo público — sem isso, você recebe um erro do tipo `Sign in to confirm you're not a bot`.
+O YouTube passou a exigir autenticação pra descoberta em lote de vídeos, mesmo sendo tudo conteúdo público. A forma mais estável de resolver isso é exportar um `cookies.txt` do navegador (com a extensão "Get cookies.txt LOCALLY", por exemplo) em vez de deixar o script ler os cookies direto do navegador em tempo real — isso costuma falhar se o navegador estiver aberto.
 
-A forma mais estável de resolver isso é exportar um arquivo `cookies.txt` do seu navegador, em vez de deixar o yt-dlp ler o cookie do navegador em tempo real (isso costuma falhar no Windows por causa de lock de arquivo enquanto o navegador está aberto).
+Salve o `cookies.txt` na mesma pasta do script; ele é detectado automaticamente.
 
-1. Instale a extensão [Get cookies.txt LOCALLY](https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc) no seu navegador (Chrome, Brave, Edge etc.).
-2. Acesse `youtube.com` estando logado normalmente.
-3. Use a extensão para exportar os cookies do site como `cookies.txt`.
-4. Salve esse arquivo na mesma pasta do script.
+### Como o script funciona
 
-O script detecta automaticamente o `cookies.txt` se ele existir; caso contrário, tenta ler os cookies direto do navegador (menos confiável para execuções longas).
+Em três passos:
 
-## Como o script está organizado
+1. Usa `extract_flat` do yt-dlp pra listar rapidamente todos os IDs de vídeo do canal.
+2. Para cada ID, busca metadados completos e tenta localizar uma faixa de legenda, com prioridade pra português (`pt-BR`, `pt`, `pt-PT`, depois qualquer outro idioma disponível).
+3. Converte a legenda (formato VTT, SRV3 ou TTML) em texto simples, removendo timestamps e tags, e monta o Markdown final: front matter com título/data/descrição/link do vídeo, a transcrição, e o embed do player no final.
+   Um detalhe que vale a pena configurar: o YouTube às vezes recusa entregar um "formato de vídeo" válido mesmo quando você não está baixando vídeo nenhum — isso derruba a extração de metadados sem necessidade. A opção `ignore_no_formats_error` resolve, já que o script não usa formato de vídeo pra nada.
 
-Em linhas gerais, o fluxo é:
-
-1. **Descoberta**: usa `extract_flat` do yt-dlp pra listar rapidamente todos os IDs de vídeo do canal, sem processar cada página individualmente.
-2. **Extração por vídeo**: para cada ID, busca os metadados completos (título, data, descrição) e tenta localizar uma faixa de legenda.
-3. **Prioridade de idioma**: a busca por legenda tenta primeiro `pt-BR`, depois `pt`, depois `pt-PT`, e só então qualquer outro idioma disponível — manual antes de automática.
-4. **Parsing da legenda**: as legendas vêm em formatos como VTT, SRV3 ou TTML; o script converte tudo pra texto simples, removendo timestamps, tags e linhas repetidas.
-5. **Geração do Markdown**: monta um arquivo com front matter (título, data, fontes, link do vídeo) seguido da transcrição e, no final, o embed do player.
-
-Um trecho central é a função que decide qual legenda usar:
-
-```python
-preferred = ["pt-BR", "pt", "pt-PT"]
-
-for lang in preferred:
-    if lang in subtitles:
-        candidates.append(("manual", lang, subtitles[lang]))
-    if lang in automatic:
-        candidates.append(("automática", lang, automatic[lang]))
-```
-
-E o front matter gerado para cada post segue este formato:
-
-```python
-return f"""---
-title: {yaml_quote(title)}
-date: {yaml_quote(upload_date)}
-sources: |
-{indent_block(description, 2)}
-youtube: {yaml_quote(video_url)}
----
-
-{transcript_text}
-
-## Vídeo
-
-<iframe ...></iframe>
-"""
-```
-
-## Rodando o script
-
-Com o `cookies.txt` na mesma pasta, execute:
+### Rodando
 
 ```bash
 python youtube_to_posts.py "https://www.youtube.com/@nome-do-canal/videos"
 ```
 
-Se você não passar nenhuma URL, o script usa uma URL padrão definida na constante `DEFAULT_CHANNEL_URL` — vale editar isso no topo do arquivo pro canal que você acompanha com mais frequência. 
+Os arquivos saem em `posts/`, um por vídeo, nomeados por slug do título + ID do vídeo — isso evita colisão de nomes e permite que o script pule vídeos já processados numa próxima execução.
 
-Os arquivos `.md` são criados numa pasta `posts/`, um por vídeo, nomeados com um slug do título + o ID do vídeo (isso evita colisão de nomes e permite identificar vídeos já processados em execuções futuras).
+## Reescrevendo com IA local
 
-## Problemas comuns e como resolver
+Depois da primeira etapa você tem uma pasta cheia de `.md` com transcrições cruas — sem pontuação, sem parágrafos, tudo em bloco único, exatamente como uma legenda automática entrega. É aqui que entra a segunda etapa.
 
-`Sign in to confirm you're not a bot`
-Falta autenticação. Siga o Passo 1 e gere o `cookies.txt`.
+### Por que local, e não uma API paga
 
-`Could not copy Chrome cookie database`
-Isso acontece quando o yt-dlp tenta ler os cookies direto do navegador e ele está aberto (o arquivo fica travado). A solução é usar o `cookies.txt` exportado manualmente em vez de depender do navegador.
+Três motivos práticos:
 
-`Requested format is not available`
-Esse erro é sobre formato de vídeo, mesmo o script não baixando vídeo nenhum — ele aparece porque o yt-dlp tenta resolver um formato "padrão" internamente antes de retornar os metadados. Duas coisas ajudam:
+* **Custo zero.** Rodando local não existe cobrança por requisição nem limite diário — só o tempo de processamento e a conta de luz.
+* **Sem limite de volume.** APIs gratuitas de terceiros costumam ter cota diária de requisições, o que obriga a espaçar o processamento de um volume grande de posts ao longo de vários dias.
+* **Sem camada de moderação externa.** Se o conteúdo do canal for opinativo ou tocar em temas sensíveis, uma API de terceiro pode recusar ou suavizar o texto por conta própria. Rodando local, é só o modelo e você — nenhuma aprovação externa no meio.
+  A desvantagem é que um modelo de 8B rodando numa GPU de consumo não tem a mesma qualidade de escrita de um modelo grande de nuvem. Pra essa tarefa específica — reorganizar um texto que já existe, não criar do zero — isso costuma ser suficiente.
 
-- Atualizar o yt-dlp, já que o YouTube muda o player com frequência: `pip install -U yt-dlp`.
-- Passar a opção `ignore_no_formats_error: True` nas configurações do `YoutubeDL`, que instrui a biblioteca a não travar quando não encontra formatos de vídeo — o que é irrelevante pro nosso caso.
+### O prompt
 
-## Adaptando pra outros canais
+O núcleo do script é a instrução que vai pro modelo junto com cada transcrição. Ela pede pra:
 
-Pra reaproveitar em qualquer canal público, só troque a URL passada como argumento (ou a constante `DEFAULT_CHANNEL_URL`). Se o conteúdo majoritário for em outro idioma, ajuste a lista `preferred` na função de extração de legendas.
+1. Identificar os assuntos distintos abordados no vídeo, na ordem em que aparecem.
+2. Corrigir erros óbvios de transcrição por semelhança sonora (legendas automáticas erram bastante por som — por exemplo, confundir uma expressão comum com um número parecido foneticamente) quando o contexto deixa claro qual era a palavra certa. Quando o modelo não tem confiança pra corrigir um nome próprio ou termo específico, ele marca o trecho de forma visível (`{{assim}}`) em vez de arriscar uma correção errada — isso facilita muito uma revisão posterior, porque dá pra buscar só pelos pontos duvidosos em vez de reler o post inteiro.
+3. Reescrever com pontuação, parágrafos e subtítulos (`##`) por tema.
+4. Preservar o conteúdo e o tom original do narrador, sem inserir ressalvas que não estavam no texto de origem.
+   O modelo responde em JSON, o que facilita extrair só o texto reescrito de forma confiável.
 
-Vale lembrar que a transcrição automática do YouTube nem sempre tem pontuação ou formatação de parágrafos — o script faz uma limpeza mínima, mas uma revisão editorial (manual ou com apoio de alguma IA) antes de publicar costuma deixar o texto bem mais legível.
+### Um ajuste de desempenho importante
 
-## Download
+Alguns modelos, como o Qwen3, têm um modo de "raciocínio" (thinking) ativado por padrão, que gera um bloco de pensamento interno longo antes de cada resposta. Isso deixa o processamento bem mais lento sem ganho real pra essa tarefa. Desativar isso no payload da requisição ao Ollama acelera bastante:
+
+```python
+payload = {
+    "model": OLLAMA_MODEL,
+    "messages": [...],
+    "format": "json",
+    "think": False,
+    "options": {"temperature": 0.3},
+}
+```
+
+A temperatura baixa (0.3) também ajuda: deixa o modelo mais conservador, reduzindo o risco de ele "inventar" alguma coisa ao tentar corrigir um trecho.
+
+### Rodando
+
+```bash
+python rewrite_posts.py --limit 15
+```
+
+Por padrão processa só os primeiros arquivos — vale sempre testar num lote pequeno antes de rodar em tudo, pra calibrar o prompt. Quando estiver satisfeito com o resultado:
+
+```bash
+python rewrite_posts.py --all
+```
+
+Os posts reescritos saem em `posts_reescritos/`, mantendo o mesmo nome de arquivo dos originais. O script pula automaticamente qualquer post que só tenha o aviso de transcrição indisponível (quando o vídeo não tinha legenda pública) e qualquer post que já tenha sido reescrito antes — então dá pra interromper e retomar sem perder trabalho.
+
+## Próximos passos possíveis
+
+Esse pipeline de duas etapas já entrega o essencial: do canal ao post organizado. A partir daqui dá pra estender de várias formas — gerar uma imagem de capa por post com um modelo de geração de imagem local, ou montar um terceiro passo que pega os trechos marcados como incertos e faz uma busca automática pra tentar resolver a dúvida antes de uma revisão manual final. Fica pra um próximo post.
+
+## Downloads
 
 [YouTube to Markdown](/downloads/youtube-to-markdown.zip)
+[AI Rewrite Posts ](/downloads/rewrite-posts.zip)
